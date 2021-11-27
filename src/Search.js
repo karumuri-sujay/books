@@ -8,6 +8,7 @@ class Search extends React.Component{
         this.state={
             output:"",
             value:"",
+            results:null,
         };
         this.onSubmit=this.onSubmit.bind(this);
         this.handleChange=this.handleChange.bind(this);
@@ -25,6 +26,7 @@ class Search extends React.Component{
             // isbn:response.results[0].isbns[0].isbn10,
             // date:response.results[0].ranks_history[0].published_date,
             output:response.results,
+            results:response.num_results,
         });
     }
 
@@ -49,7 +51,11 @@ class Search extends React.Component{
                 <br/>
                 <br/>
                 {this.state.output?
-                <Results output={this.state.output} search={this.state.value}/>
+                <div>
+                    <h3>Results Found - {this.state.results}</h3>
+                    <br/>
+                    <Results output={this.state.output} search={this.state.value}/>
+                </div>
                 :null}
             </div>
         )
